@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="AnimeLồngTiếng – khám phá anime lồng tiếng Việt, anime bộ và anime movie.">
+<meta name="theme-color" content="#090b18">
+<title>AnimeLồngTiếng – Anime lồng tiếng Việt</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+<header class="topbar"><div class="shell navrow">
+  <div class="brand"><span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M5 4h14v16H5z"/><path d="m10 9 5 3-5 3z" fill="white" stroke="none"/></svg></span>Anime<span style="color:#a994ff">LồngTiếng</span></div>
+  <nav class="navlinks" aria-label="Điều hướng"><button class="active" data-nav="home">Trang chủ</button><button data-nav="series">Anime bộ</button><button data-nav="movie">Anime movie</button><button data-nav="new">Anime mới</button><button data-nav="genres">Thể loại</button></nav>
+  <div class="searchbox" id="searchBox"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input id="searchInput" type="search" placeholder="Tìm anime..." aria-label="Tìm anime" autocomplete="off"><button class="search-clear" id="searchClear" type="button" aria-label="Xóa nội dung tìm kiếm">×</button></div>
+</div></header>
+<main class="shell">
+<section class="hero" id="hero"><div class="hero-art"><div class="hero-orb"></div></div><div class="hero-content"><div class="eyebrow"><span class="dot"></span> Thế giới anime lồng tiếng Việt</div><h1>Chạm vào thế giới anime.</h1><p>Khám phá những câu chuyện tuyệt vời qua phiên bản lồng tiếng Việt. Chọn bộ phim yêu thích và bắt đầu hành trình của bạn.</p><div class="hero-meta"><span class="pill">✦ Anime tuyển chọn</span><span>•</span><span>Cập nhật thường xuyên</span></div><div class="actions"><button class="btn btn-primary" id="heroExplore">▶ Khám phá anime</button><button class="btn btn-ghost" id="heroLatest">Anime mới cập nhật</button></div></div></section>
+<section class="section" id="genresSection"><div class="section-head"><div><h2 class="section-title">Khám phá thể loại</h2><p class="section-sub">Chọn thế giới bạn muốn bước vào</p></div></div><div class="genre-strip" id="genreStrip"></div></section>
+<section class="section" id="catalogSection"><div class="section-head"><div><h2 class="section-title" id="catalogTitle">Anime mới cập nhật</h2><p class="section-sub" id="catalogSub">Những tập phim vừa được bổ sung</p></div><button class="see-all" id="resetFilters">Xem tất cả →</button></div><div class="filterbar"><select id="typeFilter" aria-label="Loại anime"><option value="all">Tất cả định dạng</option><option value="series">Anime bộ</option><option value="movie">Anime movie</option></select><select id="statusFilter" aria-label="Trạng thái"><option value="all">Mọi trạng thái</option><option value="ongoing">Đang phát sóng</option><option value="completed">Đã hoàn thành</option></select><select id="sortFilter" aria-label="Sắp xếp"><option value="new">Mới cập nhật</option><option value="views">Lượt xem cao</option><option value="name">Tên A–Z</option></select><span class="result-count" id="resultCount"></span></div><div class="cards" id="animeGrid"></div></section>
+</main>
+<footer class="footer"><div class="shell footer-row"><div><div class="brand" style="font-size:16px"><span class="brand-mark" style="width:29px;height:29px;border-radius:9px">▶</span>Anime<span style="color:#a994ff">LồngTiếng</span></div><p>Không gian khám phá anime lồng tiếng Việt.</p></div><div>© 2026 AnimeLồngTiếng · Nội dung mẫu dành cho bản xem trước</div></div></footer>
+<nav class="bottomnav" aria-label="Điều hướng điện thoại"><button class="active" data-nav="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg>Trang chủ</button><button data-nav="series"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="m10 9 5 3-5 3z"/></svg>Anime</button><button data-nav="genres"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16M4 12h16M4 19h16"/></svg>Thể loại</button></nav>
+</div>
+<div class="overlay" id="detailOverlay"><div class="modal"><div class="modal-head"><h2>Thông tin anime</h2><button class="close" data-close="detailOverlay">×</button></div><div id="detailContent"></div></div></div>
+<div class="overlay" id="playerOverlay"><div class="modal"><div class="modal-head"><h2 id="playerTitle">Trình phát anime</h2><button class="close" data-close="playerOverlay">×</button></div><div class="player-wrap"><div class="player-screen" id="playerScreen"><div><div style="font-size:34px">▶</div><strong>Trình phát AnimeLồngTiếng</strong><p>Đây là khu vực phát video. Bản xem trước chưa tích hợp kho video; bạn có thể nhập URL MP4 hoặc HLS hợp lệ để thử phát.</p></div></div><div class="player-tools"><input id="videoUrl" placeholder="Dán URL video MP4 hoặc HLS hợp lệ..." aria-label="Đường dẫn video"><button class="btn btn-primary" id="loadVideo">Phát video</button><button class="btn btn-ghost" id="nextEpisode">Tập tiếp theo →</button></div></div></div></div>
+<div class="toast" id="toast" role="status"></div>
+<script src="data/anime.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
